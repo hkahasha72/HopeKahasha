@@ -2,16 +2,6 @@ import random
 import time
 import threading
 
-def countdown ():
-    global my_timer
-
-    my_timer = 5 
-
-    for x in range (5):
-        my_timer = my_timer - 1 
-        sleep (1)
-
-    print ("Times up!")
 
 
 # This Section is the Defined, questions + answers for the driver's test, plus the hints 
@@ -209,6 +199,26 @@ questions = [
         'hint': 'Its implied on the sign'
     },
 ]
+
+
+def timer_callback():
+    # Implement the logic to be executed when the timer expires
+    print("TIMES UP!!")
+
+# Create a Timer object that will call the timer_callback function after 25 minutes
+timer = threading.Timer(1500, timer_callback)  
+# 1500 seconds = 25 minutes
+
+# Start the timer
+timer.start()
+
+# Do other tasks here while the timer is running
+
+# Wait for the timer to complete (optional)
+timer.join()
+
+# The timer has completed
+print("TIMES UP!!!")
 
 def run_driver_test():
     score = 0
